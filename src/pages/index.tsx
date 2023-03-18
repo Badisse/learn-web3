@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 
   const { t } = useTranslation("common");
 
-  const { locale, locales, push } = useRouter();
+  const { locales } = useRouter();
 
   return (
     <>
@@ -34,15 +34,13 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          {
-            locales?.map(l => (
-              <h4 key={l}>
-                <Link href={''} locale={l}>
-                  {l}
-                </Link>
-              </h4>
-            ))
-          }
+          {locales?.map((l) => (
+            <h4 key={l}>
+              <Link href={""} locale={l}>
+                {l}
+              </Link>
+            </h4>
+          ))}
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             {t("title")} <span className="text-[hsl(280,100%,70%)]">Web 3</span>
           </h1>
@@ -52,30 +50,30 @@ const Home: NextPage = () => {
               href="https://create.t3.gg/en/usage/first-steps"
               target="_blank"
             >
-              <h3 className="text-2xl font-bold">{t("create-wallet.title")} →</h3>
-              <div className="text-lg">
-                {t("create-wallet.description")}
-              </div>
+              <h3 className="text-2xl font-bold">
+                {t("create-wallet.title")} →
+              </h3>
+              <div className="text-lg">{t("create-wallet.description")}</div>
             </Link>
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
               href="https://create.t3.gg/en/introduction"
               target="_blank"
             >
-              <h3 className="text-2xl font-bold">{t("claim-tokens.title")} →</h3>
-              <div className="text-lg">
-                {t("claim-tokens.description")}
-              </div>
+              <h3 className="text-2xl font-bold">
+                {t("claim-tokens.title")} →
+              </h3>
+              <div className="text-lg">{t("claim-tokens.description")}</div>
             </Link>
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
               href="https://create.t3.gg/en/usage/first-steps"
               target="_blank"
             >
-              <h3 className="text-2xl font-bold">{t("transfer-tokens.title")} →</h3>
-              <div className="text-lg">
-                {t("transfer-tokens.description")}
-              </div>
+              <h3 className="text-2xl font-bold">
+                {t("transfer-tokens.title")} →
+              </h3>
+              <div className="text-lg">{t("transfer-tokens.description")}</div>
             </Link>
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
@@ -83,9 +81,7 @@ const Home: NextPage = () => {
               target="_blank"
             >
               <h3 className="text-2xl font-bold">{t("swap-tokens.title")} →</h3>
-              <div className="text-lg">
-                {t("claim-tokens.description")}
-              </div>
+              <div className="text-lg">{t("claim-tokens.description")}</div>
             </Link>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -107,7 +103,7 @@ const AuthShowcase: React.FC = () => {
 
   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
     undefined, // no input
-    { enabled: sessionData?.user !== undefined },
+    { enabled: sessionData?.user !== undefined }
   );
 
   return (
