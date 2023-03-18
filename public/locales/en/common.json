@@ -1,0 +1,19 @@
+{
+  "title": "Learn",
+  "create-wallet": {
+    "title": "Create Wallet",
+    "description": "Start your Web 3 journey by creating your first wallet."
+  },
+  "claim-tokens": {
+    "title": "Claim Tokens",
+    "description": "Get your first tokens on the testnet."
+  },
+  "transfer-tokens": {
+    "title": "Transfer Tokens",
+    "description": "Send and receive testnet tokens on your wallet."
+  },
+  "swap-tokens": {
+    "title": "Swap Tokens",
+    "description": "Exchange your tokens with others on testnet."
+  }
+}

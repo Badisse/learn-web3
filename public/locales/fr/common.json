@@ -1,0 +1,19 @@
+{
+  "title": "Apprendre le",
+  "create-wallet": {
+    "title": "Creer un Portefeuil",
+    "description": "Commencez votre aventure dans le Web 3 en creant votre premier portefeuil."
+  },
+  "claim-tokens": {
+    "title": "Obtenir des Jetons",
+    "description": "Obtenez vos premiers jetons sur le testnet."
+  },
+  "transfer-tokens": {
+    "title": "Transferer des Jetons",
+    "description": "Envoyez et recevez vos jetons de test sur votre portefeuil."
+  },
+  "swap-tokens": {
+    "title": "Echangez vos Jetons",
+    "description": "Echangez vos jetons de test avec d'autres jetons."
+  }
+}

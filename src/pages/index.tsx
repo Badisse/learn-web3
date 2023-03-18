@@ -2,11 +2,28 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 import { api } from "~/utils/api";
+import nextI18nConfig from "../../next-i18next.config.mjs";
+
+export const getServerSideProps = async ({ locale }: { locale: string }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common"], nextI18nConfig, [
+      "en",
+      "fr",
+    ])),
+  },
+});
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
+
+  const { t } = useTranslation("common");
+
+  const { locales } = useRouter();
 
   return (
     <>
@@ -17,8 +34,15 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+          {locales?.map((l) => (
+            <h4 key={l}>
+              <Link href={""} locale={l}>
+                {l}
+              </Link>
+            </h4>
+          ))}
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+            {t("title")} <span className="text-[hsl(280,100%,70%)]">Web 3</span>
           </h1>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
             <Link
@@ -26,22 +50,38 @@ const Home: NextPage = () => {
               href="https://create.t3.gg/en/usage/first-steps"
               target="_blank"
             >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
+              <h3 className="text-2xl font-bold">
+                {t("create-wallet.title")} →
+              </h3>
+              <div className="text-lg">{t("create-wallet.description")}</div>
             </Link>
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
               href="https://create.t3.gg/en/introduction"
               target="_blank"
             >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
+              <h3 className="text-2xl font-bold">
+                {t("claim-tokens.title")} →
+              </h3>
+              <div className="text-lg">{t("claim-tokens.description")}</div>
+            </Link>
+            <Link
+              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+              href="https://create.t3.gg/en/usage/first-steps"
+              target="_blank"
+            >
+              <h3 className="text-2xl font-bold">
+                {t("transfer-tokens.title")} →
+              </h3>
+              <div className="text-lg">{t("transfer-tokens.description")}</div>
+            </Link>
+            <Link
+              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+              href="https://create.t3.gg/en/introduction"
+              target="_blank"
+            >
+              <h3 className="text-2xl font-bold">{t("swap-tokens.title")} →</h3>
+              <div className="text-lg">{t("claim-tokens.description")}</div>
             </Link>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -63,7 +103,7 @@ const AuthShowcase: React.FC = () => {
 
   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
     undefined, // no input
-    { enabled: sessionData?.user !== undefined },
+    { enabled: sessionData?.user !== undefined }
   );
 
   return (
